@@ -1,0 +1,55 @@
+﻿@model StudentPortal.Models.Student
+
+@{
+    ViewBag.Title = "LoginIn";
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 d-flex justify-content-center">
+            <div class="card login-card">
+                <div class="card-body">
+                    <h2 class="card-title text-center login-heading mb-5">Login</h2>
+                    @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "d-flex flex-column gap-3" }))
+                    {
+                        <!-- Email -->
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "login-label" })
+                            @Html.TextBoxFor(m => m.Email, Model.Email, htmlAttributes: new { @class = "form-control fs-5 pb-2 pt-2" })
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label class="login-label">Password</label>
+                            @Html.TextBoxFor(m => m.Password, Model.Password, htmlAttributes: new { @class = "form-control fs-5 pb-2 pt-2" })
+                        </div>
+
+                        <!-- New User Register -->
+                        <div class="new-user-on-login d-flex justify-content-between">
+                            <p class="new-user-text">New User?</p>
+                            @Html.ActionLink("Sign Up Here", "signup", "signup")
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit"
+                                class="btn btn-primary btn-block login-btn">
+                            Login
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@{
+    if (TempData["ErrorMsg"] != null)
+    {
+        <script>
+            window.onload = () => {
+                alert("@TempData["ErrorMsg"]")
+            }
+        </script>
+
+    }
+}

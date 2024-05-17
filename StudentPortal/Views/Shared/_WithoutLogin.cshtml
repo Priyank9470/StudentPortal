@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Student Portal";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<style>
+    body {
+        background: #7dd5ff29;
+    }
+
+    header > nav, footer {
+        background: #a6e1ffd1;
+    }
+</style>
+<body>
+    <!-- ! HEADER SECTION -->
+    <header>
+        <nav class="navbar navbar-expand-md navbar-toggleable-md navbar navbar-light">
+            <div class="align-items-center container d-flex pb-3 pt-3">
+                <div>
+                    <a href="#">
+                        <img src="~/Content/logo.png" alt="Logo" height="70px" width="70px" />
+                    </a>
+                </div>
+                <button type="button"
+                        id="nav-show-hide"
+                        class="navbar-toggler"
+                        title="Toggle navigation"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-md-inline-flex justify-content-between ms-md-5 ms-2 mt-md-0 mt-3" id="main-nav">
+                    <ul class="d-flex flex-grow-1 gap-md-5 gap-3 navbar-nav">
+                        @Html.ActionLink("Home", "Home", "Login", null, new { id = "home", @class = "navbar-link-button" })
+                    </ul>
+
+                    <div class="d-flex gap-4 mt-md-0 mt-3">
+                        @Html.ActionLink("Login In", "Index", "Login", null, new { @class = "btn btn-outline-success fs-5 pe-4 ps-4" })
+                        @Html.ActionLink("Sign Up", "signup", "signup", null, new { @class = "btn btn-outline-primary fs-5 pe-4 ps-4" })
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    @*MAIN SECTION*@
+    <div class="body-content mt-5">
+        @RenderBody()
+    </div>
+
+    @*FOOTER SECTION*@
+    <footer class="mt-5">
+        <div class="container pb-5 pt-3">
+            <div class="d-flex flex-column footer-links gap-3">
+                <a href="/login/home" class="footer-button">Home</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryvalunobstrive")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        $("#nav-show-hide").on("click", function () {
+            if ($("#main-nav").hasClass("show")) {
+                $("#main-nav").removeClass("show")
+            } else {
+                $("#main-nav").addClass("show")
+            }
+        })
+    </script>
+</body>
+</html>

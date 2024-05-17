@@ -1,0 +1,115 @@
+﻿@using StudentPortal.Models
+@{
+    ViewBag.Title = "Student Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    Student data = (Student)Session["studentData"];
+    switch (data.Gender.ToUpper())
+    {
+        case "M":
+            data.Gender = "Male";
+            break;
+        case "F":
+            data.Gender = "Feale";
+            break;
+    }
+}
+
+<style>
+    .card-body i {
+        font-size: 22px;
+        background: #1223ffd1;
+        padding: 10px 20px;
+        border-radius: 12px;
+        color: white;
+    }
+</style>
+
+<div class="col-rt-12">
+    <div class="Scriptcontent">
+        <!-- Student Profile -->
+        <div class="student-profile py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-transparent text-center">
+                                <img class="profile_img"
+                                     src="~/Content/profile-image.png"
+                                     alt="student dp" />
+                                <h3>
+                                    <span>@data.FirstName </span>
+                                    <span>@data.LastName</span>
+                                </h3>
+                            </div>
+                            <div class="align-items-center card-body d-flex justify-content-between">
+                                <div>
+                                    <p class="mb-0">
+                                        <strong class="pr-1">Student ID:</strong>@(data.Id + 1000)
+                                    </p>
+                                    <p class="mb-0"><strong class="pr-1">Class:</strong>@data.Standard</p>
+                                </div>
+                                <div>
+                                    <a href="@Url.Action("Edit","Student")"><i class="fa-regular fa-pen-to-square"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-transparent border-0">
+                                <h3 class="mb-0">General Information</h3>
+                            </div>
+                            <div class="card-body pt-0">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th width="30%">Roll</th>
+                                            <td width="2%">:</td>
+                                            <td>@data.Id</td>
+                                        </tr>
+                                        <tr>
+                                            <th width="30%">Academic Year</th>
+                                            <td width="2%">:</td>
+                                            <td>2020</td>
+                                        </tr>
+                                        <tr>
+                                            <th width="30%">Gender</th>
+                                            <td width="2%">:</td>
+                                            <td>@data.Gender</td>
+                                        </tr>
+                                        <tr>
+                                            <th width="30%">Course Enrolled</th>
+                                            <td width="2%">:</td>
+                                            <td>@data.Course</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div style="height: 26px"></div>
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-transparent border-0">
+                                <h3 class="mb-0">Other Information</h3>
+                            </div>
+                            <div class="card-body pt-0">
+                                <p>
+                                    <b>Address:</b> @data.Address
+                                </p>
+                                <p>
+                                    <b>Age :</b> @data.Age
+                                </p>
+                                <p>
+                                    <b>Blood Group :</b> A+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

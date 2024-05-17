@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_WithoutLogin.cshtml";
+}
+
+<h1 class="container text-center mb-5">
+    Welcome To Student Portal
+</h1>
+@{
+    Html.RenderPartial("~/Views/Shared/_HomePage.cshtml");
+}

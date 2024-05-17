@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using StudentPortal.Models
+@model Student
+
+@{
+    switch (Model.Gender.ToUpper())
+    {
+        case "MALE":
+            Model.Gender = "M";
+            break;
+        case "FEMALE":
+            Model.Gender = "F";
+            break;
+    }
+    switch (Model.Course.ToUpper())
+    {
+        case "HTML + CSS":
+            Model.Course = "1";
+            break;
+        case "JAVASCRIPT":
+            Model.Course = "2";
+            break;
+        case "JQUERY":
+            Model.Course = "3";
+            break;
+        case "C#":
+            Model.Course = "4";
+            break;
+        case "ASP.NET":
+            Model.Course = "5";
+            break;
+    }
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-12 d-flex justify-content-center">
+            <div class="card signup-card">
+                <div class="card-body">
+                    <h2 class="card-title text-center signup-heading mb-5">
+                        Student Registration
+                    </h2>
+                    @using (Html.BeginForm("Edit", "Student", FormMethod.Post, htmlAttributes: new { @class = "d-flex flex-column gap-4" }))
+                    {
+                        <!-- Hidden Fields -->
+                        @Html.HiddenFor(m => m.Id, new { value = Model.Id })
+                        @Html.HiddenFor(m => m.Standard, new { Value = Model.Standard.ToString() })
+                        @Html.HiddenFor(m => m.Course, new { Value = Model.Course })
+                        <!-- First Name -->
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FirstName, htmlAttributes: new { @class = "signup-lable" })
+                            @Html.TextBoxFor(m => m.FirstName, Model.FirstName, htmlAttributes: new { @class = "form-control fs-5 pb-2 pt-2" })
+                            @Html.ValidationMessageFor(m => m.FirstName)
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LastName, htmlAttributes: new { @class = "signup-lable" })
+                            @Html.TextBoxFor(m => m.LastName, Model.LastName, htmlAttributes: new { @class = "form-control fs-5 pb-2 pt-2" })
+                            @Html.ValidationMessageFor(m => m.LastName)
+                        </div>
+
+                        <!-- Age -->
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Age, htmlAttributes: new { @class = "signup-lable" })
+                            @Html.TextBoxFor(m => m.Age, Model.Age.ToString(), htmlAttributes: new { @class = "form-control fs-5 pb-2 pt-2" })
+                            @Html.ValidationMessageFor(m => m.Age)
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "signup-lable" })
+                            @Html.TextBoxFor(m => m.Email, Model.Email, htmlAttributes: new { @class = "form-control fs-5 pb-2 pt-2" })
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PhoneNumber, htmlAttributes: new { @class = "signup-lable" })
+                            @Html.TextBoxFor(m => m.PhoneNumber, Convert.ToString(Model.PhoneNumber), htmlAttributes: new { @class = "form-control fs-5 pb-2 pt-2" })
+                            @Html.ValidationMessageFor(m => m.PhoneNumber)
+                        </div>
+
+                        <!-- Address -->
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Address, htmlAttributes: new { @class = "signup-lable" })
+                            @Html.TextBoxFor(m => m.Address, Model.Address, htmlAttributes: new { @class = "form-control fs-5 pb-2 pt-2" })
+                            @Html.ValidationMessageFor(m => m.Address)
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Gender, "Gender", htmlAttributes: new { @class = "signup-lable" })
+                            <div class="d-flex flex-md-row flex-column gap-4 mt-3">
+                                <div class="form-check form-check-inline signup-lable">
+                                    @Html.RadioButtonFor(m => m.Gender, "M", htmlAttributes: new { @class = "form-check-input" })
+                                    @Html.LabelFor(m => m.Gender, "Male", htmlAttributes: new { @class = "form-check-label" })
+                                </div>
+                                <div class="form-check form-check-inline signup-lable">
+                                    @Html.RadioButtonFor(m => m.Gender, "F", htmlAttributes: new { @class = "form-check-input" })
+                                    @Html.LabelFor(m => m.Gender, "Female", htmlAttributes: new { @class = "form-check-label" })
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Gender)
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, htmlAttributes: new { @class = "signup-lable" })
+                            @Html.TextBoxFor(m => m.Password, Model.Password, htmlAttributes: new { @class = "form-control fs-5 pb-2 pt-2" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ConfirmPassword, htmlAttributes: new { @class = "signup-lable" })
+                            @Html.TextBoxFor(m => m.ConfirmPassword, Model.ConfirmPassword, htmlAttributes: new { @class = "form-control fs-5 pb-2 pt-2" })
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                        </div>
+
+                        <!-- Student Photo -->
+                        @*<div class="d-flex flex-column form-group">
+                                <label for="fileUpload" class="signup-lable">Upload Photo</label>
+                                <input type="file"
+                                       class="form-control-file fs-5 pb-2 pt-2"
+                                       id="fileUpload"
+                                       name="fileUpload"
+                                       required />
+                            </div>*@
+
+                        <!-- Submit Button -->
+                        <button type="submit"
+                                class="btn btn-primary btn-block signup-btn">
+                            Update
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

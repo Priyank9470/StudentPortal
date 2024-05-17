@@ -1,0 +1,17 @@
+﻿@using StudentPortal.Models
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    Student data = (Student)Session["studentData"];
+}
+
+<h1 class="mb-5">
+    Welcome @data.FirstName @data.LastName
+</h1>
+@{
+    Html.RenderPartial("~/Views/Shared/_HomePage.cshtml");
+}

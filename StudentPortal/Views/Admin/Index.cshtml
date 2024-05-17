@@ -1,0 +1,40 @@
+﻿@model List<StudentPortal.Models.Student>
+
+@{
+    ViewBag.Title = "LoginIn";
+    Layout = "~/Views/Shared/_AdminView.cshtml";
+}
+
+<style>
+    .card-body {
+        background: #52c5ff;
+    }
+
+    .card-link {
+        color: #0400ff;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+        .card-link:hover {
+            color: #001fff87;
+        }
+</style>
+
+<div class="container">
+    <div class="card rounded-4" style="width: 18rem;">
+        <div class="card-body rounded-4">
+            <h5 class="card-title fs-2 fw-bold">Summary</h5>
+            <hr />
+            <p class="card-text">
+                <b class="fs-5 fw-semibold">Total Students :</b> @Model.Count() <br />
+                <b class="fs-5 fw-semibold">Total Course :</b> 5 <br />
+                <b class="fs-5 fw-semibold">Total Male Students :</b> 5 <br />
+                <b class="fs-5 fw-semibold">Total Female Course :</b> 5
+            </p>
+            <hr />
+            <a href="/Admin/CreateStudent" class="card-link">Add Student</a>
+            <a href="#" class="card-link">Add Course</a>
+        </div>
+    </div>
+</div>
